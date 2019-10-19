@@ -1,5 +1,56 @@
 ## Version History
 
+## 1.2.14
+
+* python-build: Add CPython 3.8.0 (#1416)
+* python-build: Add Anaconda-2019.07 (#1382)
+* python-build: Add Micropython 1.11 (#1395)
+* python-build: Fix compatibility issues with Homebrew installed Tcl/Tk (#1397)
+* pyenv-exec: Do not use `exec -a`, do not mangle PATH for system Python (#1169)
+
+## 1.2.13
+
+* python-build: Add CPython 3.7.4
+* python-build: Add CPython 3.6.9
+
+## 1.2.12
+
+* python-build: Find zlib from Xcode or brew on Mojave (#1353)
+* python-build: Add PyPy 7.1.1 (#1335)
+* python-build: Add CPython 3.8.0b1
+
+## 1.2.11
+
+* python-build: Fix `posix_close` name collision in 2.4 builds (#1321)
+* python-build: Add CPython 3.4.10 (#1322)
+* python-build: Add Anaconda 2019.03
+* python-build: Allow overriding the preference of OpenSSL version per definition basis (#1302, #1325, #1326)
+* python-build: Imported changes from rbenv/ruby-build 20190401 (#1327)
+* python-build: Use GNU Readline 8.0 on macOS if brew's package isn't available (#1329)
+
+## 1.2.10
+
+* python-build: Force y, Y, yes or YES to confirm installation (#1217)
+* python-build: Add PyPy 7.0.0, 7.1.0
+* python-build: Add CPython 2.7.16, 3.5.7 and 3.7.3
+* python-build: Install `python-gdb.py` (#1190, #1289)
+* python-build: Add micropython 1.10
+* python-build: Prefer Homebrew's OpenSSL 1.1 over 1.0 (#839, #1302)
+
+## 1.2.9
+
+* python-build: Add CPython 3.7.2 and CPython 3.6.8 (#1256)
+* python-build: Add anaconda[23]-5.3.1 (#1246)
+* python-build: Add Anaconda 2018.12 (#1259)
+* python-build: Fix ironpython-dev git repo url (#1260)
+* python-build: Add `OPENSSL_NO_SSL3` patch for CPython 3.3.7 (#1263)
+
+## 1.2.8
+
+* python-build: Add CPython 3.7.1
+* python-build: Add CPython 3.6.7
+* python-build: Add anaconda[23]-5.3.0 (#1220)
+
 ## 1.2.7
 
 * python-build: Add CPython 3.5.6 (#1199)
