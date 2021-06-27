@@ -223,10 +223,10 @@ easy to fork and contribute any changes back upstream.
       run by GUI managers (which typically act as a `sh` login shell).
 
       **MacOS note:** If you installed Pyenv with Homebrew, you don't need
-      to add the `PYENV_ROOT=` and `PATH=` lines.  
+      to add the `PYENV_ROOT=` and `PATH=` lines.
       You also don't need to add commands into `~/.profile` if your shell doesn't use it.
    
-      - For **bash**:
+      - For **Bash**:
 
          ~~~ bash
          echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.profile
@@ -240,6 +240,10 @@ easy to fork and contribute any changes back upstream.
             ~~~bash
             export PYENV_ROOT="$HOME/.pyenv"
             export PATH="$PYENV_ROOT/bin:$PATH"
+            ~~~
+            
+            And put this line at the _bottom_ of `~/.profile`:
+            ~~~bash
             eval "$(pyenv init --path)"
             ~~~
 
@@ -263,8 +267,24 @@ easy to fork and contribute any changes back upstream.
 
       - For **Zsh**:
 
-        Same as for Bash above, but add the commands into both `~/.profile`
-        and `~/.zprofile`.
+         - **MacOS, if Pyenv is installed with Homebrew:**
+
+            ~~~ zsh
+            echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
+            ~~~
+         
+         - **MacOS, if Pyenv is installed with a Git checkout:**
+         
+            ~~~ zsh
+            echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zprofile
+            echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zprofile
+            echo 'eval "$(pyenv init --path)"' >> ~/.zprofile
+            ~~~
+
+         - **Other OSes:**
+         
+           Same as for Bash above, but add the commands into both `~/.profile`
+           and `~/.zprofile`.
         
       - For **Fish shell**:
 
@@ -276,7 +296,7 @@ easy to fork and contribute any changes back upstream.
 
         And add this to `~/.config/fish/config.fish`:
         ~~~ fish
-        status is-login; and pyenv init --path | source
+        status is-interactive; and pyenv init --path | source
         ~~~
 
         If Fish is not your login shell, also follow the Bash/Zsh instructions to add to `~/.profile`.
@@ -298,7 +318,7 @@ easy to fork and contribute any changes back upstream.
         - **If your `/etc/profile` sources `~/.bashrc` (SUSE):**
         
           ~~~bash
-          echo 'if command -v pyenv >/dev/null; then eval "$(pyenv init -)"; done' >> ~/.bashrc 
+          echo 'if command -v pyenv >/dev/null; then eval "$(pyenv init -)"; fi' >> ~/.bashrc 
           ~~~
 
       - For **Zsh**:
@@ -320,6 +340,9 @@ easy to fork and contribute any changes back upstream.
 
 4. **Restart your login session for the changes to take effect.**
    E.g. if you're in a GUI session, you need to fully log out and log back in.
+   
+   In MacOS, restarting terminal windows is enough (because MacOS runs shells
+   in them as login shells by default).
 
 5. [**Install Python build dependencies**](https://github.com/pyenv/pyenv/wiki#suggested-build-environment) before attempting to install a new Python version.
 
