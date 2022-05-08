@@ -276,11 +276,11 @@ The previous, more complicated configuration scheme for 2.0.0-2.2.5 still works.
   * You may run `eval "$(pyenv init --path)"` instead to just enable shims, without shell integration
 
 The below setup should work for the vast majority of users for common use cases.
-See [Advanvced configuration](#advanced-configuration) for details and more configuration options.
+See [Advanced configuration](#advanced-configuration) for details and more configuration options.
 
   - For **bash**:
 
-    Stock Bash startup files vary widely between distibutions in which of them source
+    Stock Bash startup files vary widely between distributions in which of them source
     which, under what circumstances, in what order and what additional configuration they perform.
     As such, the most reliable way to get Pyenv in all environments is to append Pyenv
     configuration commands to both `.bashrc` (for interactive shells)
@@ -366,7 +366,7 @@ See [Advanvced configuration](#advanced-configuration) for details and more conf
 
 ### Install additional Python versions
 
-To install additonal Python versions, use [`pyenv install`](COMMANDS.md#pyenv-install).
+To install additional Python versions, use [`pyenv install`](COMMANDS.md#pyenv-install).
 
 For example, to download and install Python 3.10.4, run:
 
