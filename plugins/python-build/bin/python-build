@@ -899,7 +899,7 @@ build_package_micropython() {
     "$MAKE" $MAKE_OPTS
     cd ../ports/unix
     "$MAKE" $MAKE_OPTS axtls
-    "$MAKE" $MAKE_OPTS CFLAGS_EXTRA="-DMICROPY_PY_SYS_PATH_DEFAULT='\"${PREFIX_PATH}/lib/micropython\"'"
+    "$MAKE" $MAKE_OPTS CFLAGS_EXTRA="-DMICROPY_PY_SYS_PATH_DEFAULT='\"${PREFIX_PATH}/lib/micropython\"' $CFLAGS_EXTRA"
     "$MAKE" install $MAKE_INSTALL_OPTS PREFIX="${PREFIX_PATH}"
     ln -fs micropython "${PREFIX_PATH}/bin/python"
     mkdir -p "${PREFIX_PATH}/lib/micropython"
@@ -1707,7 +1707,7 @@ verify_python() {
 try_python_module() {
   if ! "$PYTHON_BIN" -c "import $1" 1>/dev/null 2>&1; then
     { colorize 1 "WARNING"
-      echo ": The Python $1 extension was not compiled. Missing the ${2:-$1}?"
+      echo ": The Python $1 extension was not compiled${3:+ $3}. Missing the ${2:-$1}?"
       return 0
     } >&3
   fi
@@ -1788,9 +1788,14 @@ build_package_verify_py27() {
 build_package_verify_py30() {
   verify_python "${2:-3.0}"
   try_python_module "bz2" "bzip2 lib"
+  try_python_module "curses" "ncurses lib"
+  try_python_module "ctypes" "libffi lib"
   try_python_module "readline" "GNU readline lib"
   verify_python_module "ssl" "OpenSSL lib"
   try_python_module "sqlite3" "SQLite3 lib"
+  if [[ -n $DISPLAY ]]; then
+    try_python_module "tkinter" "Tk toolkit" "and GUI subsystem has been detected"
+  fi
   verify_python_module "zlib" "zlib"
 }
 
@@ -1807,6 +1812,7 @@ build_package_verify_py32() {
 # Post-install check for Python 3.3.x
 build_package_verify_py33() {
   build_package_verify_py32 "$1" "${2:-3.3}"
+  try_python_module "lzma" "lzma lib"
 }
 
 # Post-install check for Python 3.4.x
