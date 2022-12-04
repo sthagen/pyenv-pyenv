@@ -247,7 +247,9 @@ which does install native Windows Python versions.
 
 #### Automatic installer
 
-Visit our other project:
+`curl https://pyenv.run | bash`
+
+For more details visit our other project:
 https://github.com/pyenv/pyenv-installer
 
 
@@ -258,14 +260,14 @@ easy to fork and contribute any changes back upstream.
 
 * **Check out Pyenv where you want it installed.**
    A good place to choose is `$HOME/.pyenv` (but you can install it somewhere else):
-
-       git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-
+    ```
+    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+    ```
 *  Optionally, try to compile a dynamic Bash extension to speed up Pyenv. Don't
    worry if it fails; Pyenv will still work normally:
-
-       cd ~/.pyenv && src/configure && make -C src
-
+    ```
+    cd ~/.pyenv && src/configure && make -C src
+    ```
 
 ### Set up your shell environment for Pyenv
 
