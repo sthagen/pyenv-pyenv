@@ -1,4 +1,21 @@
-## Version History
+# Version History
+
+## Release 2.3.9
+
+* Add -latest suffix to miniforge3 by @nwh in https://github.com/pyenv/pyenv/pull/2551
+* Add PyPy 7.3.10 by @dand-oss in https://github.com/pyenv/pyenv/pull/2553
+* Add miniforge3 and mambaforge 22.9.0-2 by @smcgivern in https://github.com/pyenv/pyenv/pull/2559
+* Fix compilation error when building OpenSSL 1.1.1q in MacOS 11+ for 3.9.16 by @lisbethw1130 in https://github.com/pyenv/pyenv/pull/2558
+* Add `openssl` patches for 3.7.15, 3.7.16, and 3.8.16 by @samdoran in https://github.com/pyenv/pyenv/pull/2564
+* Add support for Anaconda3-2022.10 by @huypn12 in https://github.com/pyenv/pyenv/pull/2565
+
+## Release 2.3.8
+
+* Export detected shell environment in pyenv-init by @ianchen-tw in https://github.com/pyenv/pyenv/pull/2540
+* Add CPython 3.12.0a3 by @saaketp in https://github.com/pyenv/pyenv/pull/2545
+* Add CPython 3.11.1 by @anton-petrov in https://github.com/pyenv/pyenv/pull/2549
+* Add CPython 3.10.9 by @rudisimo in https://github.com/pyenv/pyenv/pull/2544
+* Add 3.7.16, 3.8.16, 3.9.16 by @chadac in https://github.com/pyenv/pyenv/pull/2550
 
 ## Release 2.3.7
 
