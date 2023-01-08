@@ -357,6 +357,11 @@ See [Advanced configuration](#advanced-configuration) for details and more confi
 
    **Proxy note**: If you use a proxy, export `http_proxy` and `https_proxy`, too.
 
+   In MacOS, you might also want to install [Fig](https://fig.io/) which
+provides alternative shell completions for many command line tools with an
+IDE-like popup interface in the terminal window.
+(Note that their completions are independent from Pyenv's codebase
+so they might be slightly out of sync for bleeding-edge interface changes.)
 
 ### Restart your shell
 
@@ -395,6 +400,9 @@ from source as part of installation (that's why you need Python build dependenci
 You can pass options to Python's `configure` and compiler flags to customize the build,
 see [_Special environment variables_ in Python-Build's README](plugins/python-build/README.md#special-environment-variables)
 for details.
+
+**NOTE:** If you'd like a faster interpreter at the cost of longer build times,
+see [_Building for maximum performance_ in Python-Build's README](plugins/python-build/README.md#building-for-maximum-performance).
 
 **NOTE:** If you want to use proxy for download, please set the `http_proxy` and `https_proxy`
 environment variables.
