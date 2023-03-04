@@ -416,7 +416,7 @@ please visit the wiki page about
 
 All Pyenv subcommands except `uninstall` automatically resolve full prefixes to the latest version in the corresponding version line.
 
-`pyenv install` picks the latest known version while other subcommands -- the latest installed version.
+`pyenv install` picks the latest known version, while other subcommands pick the latest installed version.
 
 E.g. to install and then switch to the latest 3.10 release:
 
@@ -425,8 +425,7 @@ pyenv install 3.10
 pyenv global 3.10
 ```
 
-You can run [`pyenv latest <prefix>`](COMMANDS.md#pyenv-latest) to see
-what a specific prefix would be resolved to.
+You can run [`pyenv latest -k <prefix>`](COMMANDS.md#pyenv-latest) to see how `pyenv install` would resolve a specific prefix, or [`pyenv latest <prefix>`](COMMANDS.md#pyenv-latest) to see how other subcommands would resolve it.
 
 See the [`pyenv latest` documentation](COMMANDS.md#pyenv-latest) for details.
 
@@ -439,7 +438,7 @@ it's safe to assume that they will continue working until there are further inco
 in a later version of those environments.
 
 * *3.7.8-3.7.15, 3.8.4-3.8.12, 3.9.0-3.9.7* : XCode 13.3
-* *3.6.15* : MacOS 11+ and XCode 13.3
+* *3.5.10, 3.6.15* : MacOS 11+ and XCode 13.3
 * *2.7.18* : MacOS 10.15+ and Apple Silicon
 
 
