@@ -160,12 +160,12 @@ function help_() {
         echo "$profile :"
       else
         echo
-        echo "${profile_explain:-$profile} (for login shells)"
-        echo "and $rc (for interactive shells) :"
+        echo "# ${profile_explain:-$profile} (for login shells)"
+        echo "# and $rc (for interactive shells) :"
       fi
       echo
       echo 'export PYENV_ROOT="$HOME/.pyenv"'
-      echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"'
+      echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"'
       echo 'eval "$(pyenv init -)"'
       ;;
     esac
