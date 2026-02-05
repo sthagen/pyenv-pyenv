@@ -27,6 +27,7 @@ jobs:
           python plugins/python-build/scripts/add_cpython.py --verbose >added_versions.lst && rc=$? || rc=$?
           echo "rc=$rc" >> $GITHUB_ENV
       - name: set PR properties
+        if: env.rc == 0
         shell: python
         run: |
           import os
@@ -43,3 +44,4 @@ jobs:
         with:
           branch: ${{ env.branch_name }}
           title: ${{ env.pr_name }}
+          token: ${{ secrets.TOKEN_AUTO_PR }}
