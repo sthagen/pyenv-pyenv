@@ -4,7 +4,7 @@ on:
   workflow_dispatch: {}
   schedule:
     # Every N hours
-    - cron: '0 */4 * * *'
+    - cron: '25 */4 * * *'
 
 permissions:
   contents: write
@@ -52,4 +52,5 @@ jobs:
         with:
           branch: ${{ env.branch_name }}
           title: ${{ env.pr_name }}
+          commit-message: ${{ env.pr_name }}
           token: ${{ steps.generate-token.outputs.token }}
