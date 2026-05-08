@@ -1,5 +1,14 @@
 # Version History
 
+## Release v2.6.30
+* Add CPython 3.16-dev, switch 3.15-dev to maintenance branch by @nedbat in https://github.com/pyenv/pyenv/pull/3442
+
+## Release v2.6.29
+* Add PyPy v7.3.22 by @jsirois in https://github.com/pyenv/pyenv/pull/3438
+* CI: Add timeouts to CPython release metadata fetches by @orbisai0security in https://github.com/pyenv/pyenv/pull/3439
+* Add CPython 3.15.0b1 by @jsirois in https://github.com/pyenv/pyenv/pull/3440
+* Add CPython 3.14.5rc1 by @native-api in https://github.com/pyenv/pyenv/pull/3441
+
 ## Release v2.6.28
 * pyenv-latest: fast path for when there is an exact match by @native-api in https://github.com/pyenv/pyenv/pull/3437
 

@@ -14,7 +14,7 @@
 #   -g/--debug       Build a debug version
 #
 
-PYTHON_BUILD_VERSION="2.6.28"
+PYTHON_BUILD_VERSION="2.6.30"
 
 OLDIFS="$IFS"
 
@@ -2274,6 +2274,11 @@ build_package_verify_py314() {
 # Post-install check for Python 3.15.x
 build_package_verify_py315() {
   build_package_verify_py314 "$1" "${2:-3.15}"
+}
+
+# Post-install check for Python 3.16.x
+build_package_verify_py316() {
+  build_package_verify_py315 "$1" "${2:-3.16}"
 }
 
 # Post-install check for Python 3.x rolling release scripts
