@@ -30,6 +30,13 @@ import requests_html
 import sortedcontainers
 import tqdm
 
+#CI uses exit code 1 as a signal that no new version is found
+#so have to produce a different exit code on an exception
+def _excepthook(type,value,traceback):
+    logging.error("Unhandled exception occured",exc_info=(type,value,traceback))
+    sys.exit(2)
+sys.excepthook = _excepthook
+
 logger = logging.getLogger(__name__)
 
 CUTOFF_VERSION=packaging.version.Version('3.10')
@@ -192,11 +199,17 @@ def main():
     VersionDirectory.existing.populate()
     VersionDirectory.available.populate()
 
-    for initial_release in (v for v in frozenset(VersionDirectory.available.keys())
-                            if v.micro == 0 and v not in VersionDirectory.existing):
-        # may actually be a prerelease
-        VersionDirectory.available.get_store_available_source_downloads(initial_release, True)
-        del initial_release
+    # Prereleases are placed under the same directory as the corresponding release.
+    # So until we know the release is out, its directory is a potential prerelease directory.
+    # Normally, prereleases are only made for initial releases (x.y.0) --
+    # but rarely, they may make them for other releases (e.g. 3.14.5).
+    for release in (v for v in frozenset(VersionDirectory.available.keys())     #refining changes the
+                                                                                #corresponding directory key
+                                                                                #which breaks iteration
+                                                                                #so have to iterate over a copy
+                            if v not in VersionDirectory.existing):
+        VersionDirectory.available.get_store_available_source_downloads(release, True)
+        del release
 
     versions_to_add = sorted(VersionDirectory.available.keys() - VersionDirectory.existing.keys())
 
@@ -356,8 +369,8 @@ class CPythonAvailableVersionsDirectory(KeyedList[_CPythonAvailableVersionInfo, 
             download_version = packaging.version.Version(m.group("version"))
             if download_version != version:
                 if not refine_mode:
-                    raise ValueError(f"Unexpectedly found a download {name} for {download_version} "
-                                     f"at page {entry.download_page_url} for {version}")
+                    raise ValueError(f"Unexpectedly found a download {name} ({download_version}) "
+                                     f"for {version} at page {entry.download_page_url}")
                 entry_to_fill = additional_versions_found.get_or_create(
                     download_version,
                     download_page_url=entry.download_page_url

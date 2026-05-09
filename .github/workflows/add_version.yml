@@ -25,6 +25,8 @@ jobs:
       - name: check for a release
         run: |
           python plugins/python-build/scripts/add_cpython.py --verbose >added_versions.lst && rc=$? || rc=$?
+          #0 means new version found, 1 not found, 2 another error
+          [[ $rc -gt 1 ]] && false
           echo "rc=$rc" >> $GITHUB_ENV
       - name: set PR properties
         if: env.rc == 0
