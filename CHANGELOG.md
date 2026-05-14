@@ -1,5 +1,9 @@
 # Version History
 
+## Release v2.6.31
+* CI: add_cpython: Support prereleases for non-initial CPython releases by @native-api in https://github.com/pyenv/pyenv/pull/3443
+* Add CPython 3.14.5 by @pyenv-bot[bot] in https://github.com/pyenv/pyenv/pull/3444
+
 ## Release v2.6.30
 * Add CPython 3.16-dev, switch 3.15-dev to maintenance branch by @nedbat in https://github.com/pyenv/pyenv/pull/3442
 
