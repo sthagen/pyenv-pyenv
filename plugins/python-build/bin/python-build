@@ -1729,6 +1729,15 @@ use_homebrew_openssl() {
         export CPPFLAGS="-I$ssldir/include ${CPPFLAGS:+ $CPPFLAGS}"
         export LDFLAGS="-L$ssldir/lib${LDFLAGS:+ $LDFLAGS}"
       fi
+      # 3.10.0+ (https://github.com/python/cpython/pull/24820)
+      # but has no effect until 3.11.0 (b9e9292d75fdea621e05e39b8629e6935d282d0d)
+      # and broken in MacOS until 3.12.2 (cc13eabc7ce08accf49656e258ba500f74a1dae8)
+      if [[ -n $PYTHON_BUILD_CONFIGURE_WITH_OPENSSL_RPATH ]]; then
+        package_option python configure --with-openssl-rpath="${ssldir}/lib"
+      else
+        prepend_ldflags_libs "-Wl,-rpath,${ssldir}/lib"
+      fi
+      
       export PKG_CONFIG_PATH="$ssldir/lib/pkgconfig/:${PKG_CONFIG_PATH}"
       lock_in homebrew
       return 0
@@ -2092,10 +2101,12 @@ build_package_symlink_version_suffix() {
 
 verify_python() {
   build_package_symlink_version_suffix
+  
+  local python_bin="${PYTHON_BIN%/*}/python${1:?}"
 
-  if [ ! -x "${PYTHON_BIN}" ]; then
+  if [ ! -x "${python_bin}" ]; then
     { colorize 1 "ERROR"
-      echo ": invalid Python executable: ${PYTHON_BIN}"
+      echo ": invalid Python executable: ${python_bin}"
       echo
       echo "The python-build could not find proper executable of Python after successful build."
       echo "Please open an issue for future improvements."
