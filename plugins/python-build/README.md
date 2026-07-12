@@ -67,6 +67,13 @@ exact name of the version you want to install. For example,
 Python versions will be installed into a directory of the same name under
 `~/.pyenv/versions`.
 
+To install a version under a different name -- for instance, to keep several
+builds of the same version side by side -- append `:<alias>` to the version:
+
+    pyenv install 3.12.0:3.12-custom
+
+This installs into `~/.pyenv/versions/3.12-custom`.
+
 To see a list of all available Python versions, run `pyenv install --list`. You
 may also tab-complete available Python versions if your pyenv installation is
 properly configured.
@@ -262,7 +269,7 @@ would be to make symlinks at the mirror's root:
 ```
 
 The rationale is to abstract away difference between directory structures of sites
-of various Python flavors and their occasional changes as well as to accomodate
+of various Python flavors and their occasional changes as well as to accommodate
 people who only wish to cache some select downloads. This also allows to mirror multiple sites at once.
 
 If the mirror being used does not have the same checksum (*e.g.* with a

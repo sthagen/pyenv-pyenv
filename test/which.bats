@@ -90,6 +90,17 @@ Note: See 'pyenv help global' for tips on allowing multiple
 OUT
 }
 
+@test "version with glob characters is handled correctly" {
+  bats_require_minimum_version 1.5.0
+  cd "$BATS_TEST_TMPDIR"; touch 1.1
+  PATH="$(path_without foo)" PYENV_VERSION="[1-9].?*" run -127 pyenv-which foo
+  assert_failure
+  assert_output <<!
+pyenv: version \`[1-9].?*' is not installed (set by PYENV_VERSION environment variable)
+pyenv: foo: command not found
+!
+}
+
 @test "no executable found" {
   bats_require_minimum_version 1.5.0
   create_alt_executable_in_version "2.7" "py.test"
@@ -181,7 +192,7 @@ exit
   assert_success "version=3.4.2"
 }
 
-@test "skip advice supresses error messages" {
+@test "skip advice suppresses error messages" {
   bats_require_minimum_version 1.5.0
   create_alt_executable_in_version "2.7" "python"
   create_alt_executable_in_version "3.3" "py.test"
