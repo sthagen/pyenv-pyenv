@@ -1,5 +1,16 @@
 # Version History
 
+## Release v2.8.3
+* Add CPython 3.13.15, 3.14.7 by @pyenv-bot[bot] in https://github.com/pyenv/pyenv/pull/3512
+
+## Release v2.8.2
+* pyenv-binary: add the `package` subcommand; add `pyenv install --list --bare` by @macayu17 in https://github.com/pyenv/pyenv/pull/3498
+* Add graalpy3.12-25.2.4 by @msimacek in https://github.com/pyenv/pyenv/pull/3502
+* Bump actions/setup-python from 6 to 7 in the github-actions group by @dependabot[bot] in https://github.com/pyenv/pyenv/pull/3505
+* add_cpython: refactor extra Requests logic by @anupamme in https://github.com/pyenv/pyenv/pull/3507
+* Add CPython 3.15.0rc1 by @jsirois in https://github.com/pyenv/pyenv/pull/3510
+* pyenv-binary: generate platform-specific package names by @macayu17 in https://github.com/pyenv/pyenv/pull/3504
+
 ## Release v2.8.1
 * pyenv-binary: add the `generate-installer` subcommand by @macayu17 in https://github.com/pyenv/pyenv/pull/3488
 * Add CPython 3.15.0b4 by @pyenv-bot[bot] in https://github.com/pyenv/pyenv/pull/3495
@@ -387,7 +398,7 @@
 * Add CPython 3.13.0a4 by @saaketp in https://github.com/pyenv/pyenv/pull/2903
 * Handle the case where `pyenv-commands --sh` returns nothing by @aphedges in https://github.com/pyenv/pyenv/pull/2908
 * Document default build configuration customizations by @native-api in https://github.com/pyenv/pyenv/pull/2911
-* Use Homebrew in Linux if Pyenv is installled with Homebrew by @native-api in https://github.com/pyenv/pyenv/pull/2906
+* Use Homebrew in Linux if Pyenv is installed with Homebrew by @native-api in https://github.com/pyenv/pyenv/pull/2906
 * Add miniforge and mambaforge 22.11.1-3, 22.11.1-4, 23.1.0-0 to 23.11.0-0 by @aphedges in https://github.com/pyenv/pyenv/pull/2909
 * Add miniconda3-24.1.2 by @binbjz in https://github.com/pyenv/pyenv/pull/2915
 * Minor grammar fix in libffi backport patch in 2.5.x by @cuinix in https://github.com/pyenv/pyenv/pull/2922
@@ -1523,7 +1534,7 @@
 * pyenv: Prefer gawk over awk if both are available.
 * python-build: Add new PyPy release; pypy-2.3, pypy-2.3-src (#162)
 * python-build: Add new Anaconda release; anaconda-1.9.2 (#155)
-* python-build: Add new Miniconda releases; miniconda-3.3.0, minoconda-3.4.2, miniconda3-3.3.0, miniconda3-3.4.2
+* python-build: Add new Miniconda releases; miniconda-3.3.0, miniconda-3.4.2, miniconda3-3.3.0, miniconda3-3.4.2
 * python-build: Add new Stackless releases; stackless-2.7.3, stackless-2.7.4, stackless-2.7.5, stackless-2.7.6, stackless-3.2.5, stackless-3.3.5 (#164)
 * python-build: Add IronPython versions (setuptools and pip will work); ironpython-2.7.4, ironpython-dev
 * python-build: Add new Jython beta release; jython-2.7-beta2
