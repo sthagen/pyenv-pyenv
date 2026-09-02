@@ -165,7 +165,7 @@ path_without() {
       if [ "$found" != "${PYENV_ROOT}/shims" ]; then
         alt="${PYENV_TEST_DIR}/$(echo "${found#/}" | tr '/' '-')"
         mkdir -p "$alt"
-        for util in bash head cut readlink greadlink tr sed xargs basename sort; do
+        for util in basename bash cut dirname find greadlink gzip head mkdir readlink sed sort tar tr xargs; do
           if [ -x "${found}/$util" ]; then
             ln -s "${found}/$util" "${alt}/$util"
           fi
@@ -222,4 +222,9 @@ create_hook() {
   if [ ! -t 0 ]; then
     cat > "${PYENV_HOOK_PATH}/$1/$2"
   fi
+}
+
+skip_if_nonposix_security() {
+  true "${1:?}" "${2:?}"
+  test "$@" && skip "UNIX permission bits are being overridden" || true
 }

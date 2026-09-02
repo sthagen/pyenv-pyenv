@@ -10,6 +10,7 @@ stub_build_environment() {
   create_stub pyenv-latest 'while (($#)); do case "$1" in -f|-k);; *)break;; esac; shift; done; echo "$*"'
   create_stub uname 'case "$1" in -s) echo Linux;; -m) echo x86_64;; esac'
   create_stub getconf 'echo "glibc 2.17"'
+  create_stub readelf true
 }
 
 @test "-v|--verbose runs pyenv install verbosely" {
@@ -81,10 +82,16 @@ pyenv-install --list --bare
   assert_failure "pyenv-binary: \`latest' cannot be used as an entry name"
 }
 
-@test "refuses to package on macOS before compiling anything" {
+@test "packages on macOS" {
   create_stub uname 'case "$1" in -s) echo Darwin;; -m) echo arm64;; esac'
+  create_stub pyenv-install 'echo install'
+  create_stub pyenv-binary-save 'echo save'
+  create_stub pyenv-binary-generate-installer 'echo generate-installer'
+
   run pyenv-binary-package 3.12.7:3.12.7-test --archive-base-url http://x/b
-  assert_failure "pyenv-binary: macOS archives are not supported yet"
+  assert_success "install
+save
+generate-installer"
 }
 
 @test "writes the archive, metadata and definition under the entry name (integration)" {
