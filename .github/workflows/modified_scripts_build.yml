@@ -108,7 +108,7 @@ jobs:
           echo "$PYENV_ROOT/shims:$PYENV_ROOT/bin" >> $GITHUB_PATH
       - run: |
           #prerequisites
-          brew install openssl readline sqlite3 xz tcl-tk@8 libb2 zstd
+          brew install openssl readline sqlite3 xz tcl-tk@8 libb2 zstd gdbm
           if [[ "${{ matrix.python-version }}" =~ pypy.*-(src|dev) ]]; then
             export PYENV_BOOTSTRAP_VERSION=pypy2.7-7
             echo "PYENV_BOOTSTRAP_VERSION=$PYENV_BOOTSTRAP_VERSION" >> $GITHUB_ENV
@@ -212,6 +212,8 @@ jobs:
           - ubuntu-22.04-arm
           - ubuntu-24.04
           - ubuntu-24.04-arm
+          - ubuntu-26.04
+          - ubuntu-26.04-arm
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v7
@@ -222,7 +224,7 @@ jobs:
           echo "$PYENV_ROOT/shims:$PYENV_ROOT/bin" >> $GITHUB_PATH
       - run: |
           #prerequisites
-          pyenv install-prerequisites
+          pyenv install-prerequisites --all
           if [[ "${{ matrix.python-version }}" =~ pypy.*-(src|dev) ]]; then
             export PYENV_BOOTSTRAP_VERSION=pypy2.7-7
             echo "PYENV_BOOTSTRAP_VERSION=$PYENV_BOOTSTRAP_VERSION" >> $GITHUB_ENV
